@@ -1,9 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import UseAuth from "../../../Hooks/UseAuth";
 
 const Login = () => {
-  const { googleLogin } = UseAuth();
+  const history = useHistory();
+  const { googleLogin, setUser } = UseAuth();
+  const location = useLocation();
+  const redirect = location.state?.from || "/home";
+
+  const loginGoogle = () => {
+    googleLogin().then((result) => {
+      setUser(result.user);
+      history.push(redirect);
+    });
+  };
+
   return (
     <div
       style={{ marginTop: "80px" }}
@@ -17,7 +28,7 @@ const Login = () => {
           <h3 className="fw-bold text-center mb-4 mt-5">Login With</h3>
 
           <button
-            onClick={googleLogin}
+            onClick={loginGoogle}
             className="btn rounded-pill border border-3 w-100 text-start"
           >
             <span>
@@ -33,7 +44,10 @@ const Login = () => {
             Don't Have An Account ? <Link to="/signup"> Sign Up</Link>
           </p>
           <div className="text-center">
-            <button className="btn btn-outline-secondary py-0 rounded-pill">
+            <button
+              onClick={() => history.push("adminLogin")}
+              className="btn btn-outline-secondary py-0 rounded-pill"
+            >
               Admin Login ?
             </button>
           </div>

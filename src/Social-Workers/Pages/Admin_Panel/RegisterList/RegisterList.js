@@ -1,7 +1,9 @@
 import React from "react";
 import { Table } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 const RegisterList = () => {
+  const history = useHistory();
   return (
     <div className="container" style={{ marginTop: "120px" }}>
       <div className="text-center">
@@ -35,6 +37,14 @@ const RegisterList = () => {
             </tr>
           </tbody>
         </Table>
+      </div>
+      <div className="text-center my-5">
+        <button
+          className="btn btn-secondary px-4"
+          onClick={() => history.push("/adminPanel")}
+        >
+          Back
+        </button>
       </div>
     </div>
   );

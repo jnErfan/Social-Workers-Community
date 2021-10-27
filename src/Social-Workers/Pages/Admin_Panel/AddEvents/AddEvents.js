@@ -2,8 +2,10 @@ import React from "react";
 import { Form, FormControl } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const AddEvents = () => {
+  const history = useHistory();
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     axios.post("http://localhost:5000/events", data);
@@ -75,6 +77,14 @@ const AddEvents = () => {
             />
           </div>
         </form>
+      </div>
+      <div className="text-center my-5">
+        <button
+          className="btn btn-secondary px-4"
+          onClick={() => history.push("/adminPanel")}
+        >
+          Back
+        </button>
       </div>
     </div>
   );

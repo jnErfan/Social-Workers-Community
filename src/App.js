@@ -15,6 +15,9 @@ import ParticipatedEvents from "./Social-Workers/Pages/ParticipatedEvents/Partic
 import NavBaar from "./Social-Workers/Pages/Shared/NavBaar/NavBaar";
 import WorkRegister from "./Social-Workers/Pages/WorkRegister/WorkRegister";
 import AuthContext from "./Social-Workers/Context/AuthContext";
+import PrivateRoute from "./Social-Workers/PrivateRoute/PrivateRoute";
+import AdminMain from "./Social-Workers/Pages/Admin_Panel/AdminMain/AdminMain";
+import AdminPrivateRoute from "./Social-Workers/PrivateRoute/AdminPrivateRoute";
 
 function App() {
   return (
@@ -30,9 +33,9 @@ function App() {
             <Home />
           </Route>
 
-          <Route path="/events">
+          <PrivateRoute path="/events">
             <Events />
-          </Route>
+          </PrivateRoute>
 
           <Route path="/blogs">
             <Blogs />
@@ -42,16 +45,20 @@ function App() {
             <About />
           </Route>
 
-          <Route path="/addEvents">
+          <AdminPrivateRoute path="/addEvents">
             <AddEvents />
-          </Route>
+          </AdminPrivateRoute>
 
-          <Route path="/participated">
+          <AdminPrivateRoute path="/participated">
             <ParticipatedEvents />
-          </Route>
+          </AdminPrivateRoute>
 
-          <Route path="/registerList">
+          <AdminPrivateRoute path="/registerList">
             <RegisterList />
+          </AdminPrivateRoute>
+
+          <Route path="/adminPanel">
+            <AdminMain />
           </Route>
 
           <Route path="/adminLogin">
