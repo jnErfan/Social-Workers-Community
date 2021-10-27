@@ -1,0 +1,16 @@
+.ellipsis {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.eventContainer {
+  margin-top: 90px;
+}
+
+.cardContainer:hover {
+  transform: scale(1.07);
+  transition: 700ms;
+  cursor: pointer;
+}
