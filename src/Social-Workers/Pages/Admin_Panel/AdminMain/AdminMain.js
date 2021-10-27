@@ -15,10 +15,14 @@ const AdminMain = () => {
           <div className="col col-12 col-md-4 col-lg-2">
             <Navbar bg="light" expand={false}>
               <Container fluid>
-                <p>
+                <p className="mt-3 fs-5 fw-bold text-primary">
                   <i className="far fa-calendar-plus"></i> See ALL
                 </p>
-                <Navbar.Toggle aria-controls="offcanvasNavbar" />
+                <Navbar.Toggle
+                  style={{ height: "300px" }}
+                  className="mb-5 bg-secondary"
+                  aria-controls="offcanvasNavbar"
+                />
                 <Navbar.Offcanvas
                   id="offcanvasNavbar"
                   aria-labelledby="offcanvasNavbarLabel"

@@ -68,7 +68,8 @@ const NavBaar = () => {
             </Nav>
           </div>
           <div className="">
-            {user?.email === "gamechainger1@gmail.com" && (
+            {user?.email === "gamechainger1@gmail.com" ||
+            user?.email === "j.n.erfan420@gmail.com" ? (
               <NavLink
                 style={{ color: "black" }}
                 className="me-3 py-1 px-3 rounded-pill text-decoration-none fw-bold"
@@ -81,6 +82,8 @@ const NavBaar = () => {
                   alt=""
                 />
               </NavLink>
+            ) : (
+              <span>{""}</span>
             )}
 
             {user ? (

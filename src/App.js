@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import About from "./Social-Workers/Pages/About/About";
 import AddEvents from "./Social-Workers/Pages/Admin_Panel/AddEvents/AddEvents";
 import RegisterList from "./Social-Workers/Pages/Admin_Panel/RegisterList/RegisterList";
 import Blogs from "./Social-Workers/Pages/Blogs/Blogs";
@@ -41,10 +40,6 @@ function App() {
             <Blogs />
           </Route>
 
-          <Route path="/about">
-            <About />
-          </Route>
-
           <AdminPrivateRoute path="/addEvents">
             <AddEvents />
           </AdminPrivateRoute>
@@ -57,9 +52,9 @@ function App() {
             <RegisterList />
           </AdminPrivateRoute>
 
-          <Route path="/adminPanel">
+          <AdminPrivateRoute path="/adminPanel">
             <AdminMain />
-          </Route>
+          </AdminPrivateRoute>
 
           <Route path="/adminLogin">
             <AdminLogin />

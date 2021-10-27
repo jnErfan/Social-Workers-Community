@@ -4,7 +4,14 @@ import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import UseAuth from "../../../Hooks/UseAuth";
 const AdminLogin = () => {
-  const { setEmail, setPassword, setUser, adminLoginButton, error } = UseAuth();
+  const {
+    setEmail,
+    setPassword,
+    setUser,
+    adminLoginButton,
+    googleLogin,
+    error,
+  } = UseAuth();
   const { register, handleSubmit } = useForm();
   const history = useHistory();
   const redirect = "/adminPanel";
@@ -13,6 +20,13 @@ const AdminLogin = () => {
     setPassword(data.password);
     adminLoginButton().then((result) => {
       setUser(result?.user);
+      history.push(redirect);
+    });
+  };
+
+  const loginGoogle = () => {
+    googleLogin().then((result) => {
+      setUser(result.user);
       history.push(redirect);
     });
   };
@@ -45,13 +59,31 @@ const AdminLogin = () => {
             <p className="mt-0 text-danger">
               <small>{error}</small>
             </p>
-
             <input
               style={{ backgroundColor: "orangered" }}
               className="btn w-100 text-light"
               type="submit"
+              value="Login"
             />
+            <div className="text-center my-3">
+              <p className="text-secondary">__________ Or __________</p>
+            </div>
           </form>
+          <div className="text-center mt-4">
+            <button
+              onClick={loginGoogle}
+              className="btn rounded-pill border border-1"
+            >
+              <span>
+                <img
+                  className="mx-2 me-5"
+                  src="https://img.icons8.com/fluency/48/000000/google-logo.png"
+                  alt=""
+                />
+              </span>
+              <span className="fw-bold me-3"> Google Admin SignIn</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

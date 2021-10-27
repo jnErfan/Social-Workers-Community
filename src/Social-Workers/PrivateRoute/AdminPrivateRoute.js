@@ -23,7 +23,8 @@ const AdminPrivateRoute = ({ children, rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
-        user.email === "gamechainger1@gmail.com" ? (
+        user?.email === "gamechainger1@gmail.com" ||
+        user?.email === "j.n.erfan420@gmail.com" ? (
           children
         ) : (
           <Redirect
