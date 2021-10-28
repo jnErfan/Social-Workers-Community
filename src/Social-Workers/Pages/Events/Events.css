@@ -14,3 +14,12 @@
   transition: 700ms;
   cursor: pointer;
 }
+/* p:nth-child(1n+0) {
+  background: red;
+}
+p:nth-child(2n+0) {
+  background: blue;
+}
+p:nth-child(3n+0) {
+  background: green;
+} */

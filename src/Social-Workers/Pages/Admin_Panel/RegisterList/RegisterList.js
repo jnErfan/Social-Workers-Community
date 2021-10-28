@@ -1,9 +1,31 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 const RegisterList = () => {
   const history = useHistory();
+  const [registerList, setRegisterList] = useState([]);
+  const [deleteRegister, setDeleteRegister] = useState("");
+
+  useEffect(() => {
+    fetch("https://soacial-workers-server.herokuapp.com/workRegister")
+      .then((res) => res.json())
+      .then((data) => {
+        setDeleteRegister(data);
+        setRegisterList(data);
+      });
+  }, [deleteRegister]);
+  const deleteWorker = (id) => {
+    axios
+      .delete(`https://soacial-workers-server.herokuapp.com/registerList/${id}`)
+      .then((result) => {
+        if (result.data.deletedCount) {
+          console.log(result.data.deletedCount);
+          alert("Delete Successful");
+        }
+      });
+  };
   return (
     <div className="container" style={{ marginTop: "120px" }}>
       <div className="text-center">
@@ -24,17 +46,22 @@ const RegisterList = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="border-0">
-              <td className="py-4 ps-5 border-0">J.N.Erfan</td>
-              <td className="py-4 ps-5 border-0">j.n.erfan@gmail.com</td>
-              <td className="py-4 ps-5 border-0">22-10-2021</td>
-              <td className="py-4 ps-5 border-0">Stuffed Animals</td>
-              <td className="py-4 ps-5 border-0">
-                <button className="btn bg-danger p-1 rounded">
-                  <i className="far fa-trash-alt fs-4 text-white"></i>
-                </button>
-              </td>
-            </tr>
+            {registerList.map((register) => (
+              <tr className="border-0" key={register._id}>
+                <td className="py-4 ps-5 border-0">{register.name}</td>
+                <td className="py-4 ps-5 border-0">{register.email}</td>
+                <td className="py-4 ps-5 border-0">{register.date}</td>
+                <td className="py-4 ps-5 border-0">{register.interestEvent}</td>
+                <td className="py-4 ps-5 border-0">
+                  <button
+                    onClick={() => deleteWorker(`${register._id}`)}
+                    className="btn bg-danger p-1 rounded"
+                  >
+                    <i className="far fa-trash-alt fs-4 text-white"></i>
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </Table>
       </div>

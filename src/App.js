@@ -17,6 +17,7 @@ import AuthContext from "./Social-Workers/Context/AuthContext";
 import PrivateRoute from "./Social-Workers/PrivateRoute/PrivateRoute";
 import AdminMain from "./Social-Workers/Pages/Admin_Panel/AdminMain/AdminMain";
 import AdminPrivateRoute from "./Social-Workers/PrivateRoute/AdminPrivateRoute";
+import EventDetails from "./Social-Workers/Pages/EventDetails/EventDetails";
 
 function App() {
   return (
@@ -32,9 +33,13 @@ function App() {
             <Home />
           </Route>
 
-          <PrivateRoute path="/events">
+          <Route path="/events">
             <Events />
-          </PrivateRoute>
+          </Route>
+
+          <Route path="/event/:eventId">
+            <EventDetails />
+          </Route>
 
           <Route path="/blogs">
             <Blogs />
@@ -68,9 +73,9 @@ function App() {
             <SignUp />
           </Route>
 
-          <Route path="/workRegister">
+          <PrivateRoute path="/workRegister">
             <WorkRegister />
-          </Route>
+          </PrivateRoute>
 
           <Route path="*">
             <NotFound />

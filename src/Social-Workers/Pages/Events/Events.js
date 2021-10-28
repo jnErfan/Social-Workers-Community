@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Card, Col, Row } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import "./Events.css";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
+  const history = useHistory();
   useEffect(() => {
-    fetch("http://localhost:5000/events")
+    fetch("https://soacial-workers-server.herokuapp.com/events")
       .then((res) => res.json())
       .then((data) => setEvents(data));
   }, []);
@@ -13,7 +15,11 @@ const Events = () => {
     <div className="container eventContainer">
       <Row xs={2} md={3} lg={4} className="d-flex justify-content-center">
         {events.map((event) => (
-          <Col className="mb-4 cardContainer" key={event._id}>
+          <Col
+            onClick={() => history.push(`/event/${event._id}`)}
+            className="mb-4 cardContainer"
+            key={event._id}
+          >
             <Card
               border="info"
               className="p-0"

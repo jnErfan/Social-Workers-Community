@@ -8,7 +8,7 @@ const AddEvents = () => {
   const history = useHistory();
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    axios.post("http://localhost:5000/events", data);
+    axios.post("https://soacial-workers-server.herokuapp.com/events", data);
     console.log(data);
   };
 

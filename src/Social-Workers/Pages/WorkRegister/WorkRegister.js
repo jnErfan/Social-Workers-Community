@@ -2,10 +2,20 @@ import React from "react";
 import "./WorkRegister.css";
 import { FormControl } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import UseAuth from "../../Hooks/UseAuth";
 
 const WorkRegister = () => {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { register, handleSubmit, reset } = useForm();
+  const { user } = UseAuth();
+  const onSubmit = (data) => {
+    axios.post(
+      "https://soacial-workers-server.herokuapp.com/workRegister",
+      data
+    );
+    console.log(data);
+    reset();
+  };
   return (
     <div
       style={{ marginTop: "100px" }}
@@ -28,30 +38,37 @@ const WorkRegister = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl
               className="w-100 my-4 inputField"
+              type="name"
+              value={user.displayName}
               placeholder="Full Name"
               {...register("name")}
               required
             />
             <FormControl
               className="w-100 my-4 inputField"
+              type="email"
+              value={user.email}
               placeholder="Username Or Email"
               {...register("email")}
               required
             />
             <FormControl
               className="w-100 my-4 inputField"
-              placeholder="Date"
+              type="date"
+              placeholder="Date 22-10-2021"
               {...register("date")}
               required
             />
             <FormControl
               className="w-100 my-4 inputField"
+              as="textarea"
               placeholder="Description"
               {...register("description")}
               required
             />
             <FormControl
               className="w-100 my-4 inputField"
+              type="text"
               placeholder="Which Events You Interest"
               {...register("interestEvent")}
               required
